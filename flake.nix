@@ -32,7 +32,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            ./hosts/desktop
+            ./hosts/minipc
             # ./hosts/desktop/spicetify.nix
             # sops-nix.nixosModules.sops
           ];

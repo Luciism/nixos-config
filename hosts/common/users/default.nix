@@ -1,5 +1,6 @@
 {
     imports = [
-        ./lucism.nix
+        # ./lucism.nix
+        ./minipcowner.nix
     ];
 }
