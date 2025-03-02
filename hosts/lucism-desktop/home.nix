@@ -19,7 +19,7 @@
 
   home.packages = with pkgs; [
     tmux
-    gimp
+    # gimp
     libreoffice
     discord
     (vesktop.overrideAttrs (
@@ -31,10 +31,12 @@
     ))
     firefox-devedition
     figma-linux
+    # kdePackages.partitionmanager
     # openvpn
     # openvpn3
     docker-client
     vscode
+    gnome-clocks
     # onedrivegui
     # spotify
     # spicetify-cli
