@@ -74,8 +74,16 @@
   # Enable NVIDIA
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  # hardware.bluetooth.enable = true; # enables support for Bluetooth
+  # hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  services.blueman.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      Policy.AutoEnable = true;
+    };
+  };
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
