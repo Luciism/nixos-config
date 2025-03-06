@@ -115,6 +115,17 @@
     ];
   };
 
+
+  users.users.sibling = {
+    isNormalUser = true;
+    description = "Sibling";
+    extraGroups = [
+      # "networkmanager"
+    ];
+  };
+
+
+
   home-manager = {
     backupFileExtension = "backup";
     extraSpecialArgs = { inherit inputs pkgs; };
@@ -122,6 +133,7 @@
     useGlobalPkgs = true;
     users = {
       "lucism" = import ./home.nix;
+      "sibling" = import ./sibling.home.nix;
     };
   };
 
