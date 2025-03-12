@@ -30,11 +30,15 @@
       }
     ))
     firefox-devedition
+    # minecraft
+    # modrinth-app
+    # fabric-installer
     figma-linux
     # kdePackages.partitionmanager
     # openvpn
     # openvpn3
     docker-client
+    uv
     vscode
     gnome-clocks
     # onedrivegui

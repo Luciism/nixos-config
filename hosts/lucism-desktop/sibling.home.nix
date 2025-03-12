@@ -25,7 +25,7 @@
   home.packages = with pkgs; [
     gimp
     libreoffice
-    firefox-devedition
+    # firefox-devedition
     gnome-clocks
   ];
   # For nixd LSP to recognize what nixpkgs version I use
