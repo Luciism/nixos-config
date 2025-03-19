@@ -20,10 +20,10 @@
   ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.useOSProber = true;
-  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.grub.enable = true;
+  # boot.loader.grub.device = "nodev";
+  # boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "local"; # Define your hostname.
@@ -81,7 +81,7 @@
     enable = true;
     powerOnBoot = true;
     settings = {
-      Policy.AutoEnable = true;
+      # Policy.AutoEnable = true;
     };
   };
 
@@ -115,17 +115,6 @@
     ];
   };
 
-
-  users.users.sibling = {
-    isNormalUser = true;
-    description = "Sibling";
-    extraGroups = [
-      # "networkmanager"
-    ];
-  };
-
-
-
   home-manager = {
     backupFileExtension = "backup";
     extraSpecialArgs = { inherit inputs pkgs; };
@@ -133,7 +122,6 @@
     useGlobalPkgs = true;
     users = {
       "lucism" = import ./home.nix;
-      "sibling" = import ./sibling.home.nix;
     };
   };
 
