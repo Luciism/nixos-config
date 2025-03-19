@@ -14,8 +14,10 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    .../../modules/spicetify.nix
     inputs.spicetify-nix.nixosModules.default
     inputs.home-manager.nixosModules.default
+
     # "${(import ./nix/sources.nix).sops-nix}/modules/sops"
   ];
 

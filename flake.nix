@@ -30,8 +30,8 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            ./hosts/lucism-desktop/configuration.nix
-            ./hosts/lucism-desktop/spicetify.nix
+            ./hosts/desktop
+            # ./hosts/desktop/spicetify.nix
             # sops-nix.nixosModules.sops
           ];
         };
