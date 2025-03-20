@@ -25,6 +25,7 @@
     {
       packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
 
+      homeManagerModules = import ./modules;
       nixosConfigurations = {
         local = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";

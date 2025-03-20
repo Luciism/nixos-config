@@ -17,6 +17,8 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
+  modules.spicetify.enable = true;
+  # programs.spicetify.enable = true;
   home.packages = with pkgs; [
     tmux
     # gimp
