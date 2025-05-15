@@ -2,9 +2,19 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 {
+  # home.features = {
+  #   spicetify.enable = true;
+  # };
+  # config.features = {
+  #   spicetify.enable = true;
+  # };
+  # spicetify.enable = true;
+  # environment = {};
+
   home.username = "lucism";
   home.homeDirectory = "/home/${config.home.username}";
 
@@ -16,6 +26,19 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
+
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "discord"
+      "spotify"
+      "vscode"
+      "minecraft-launcher"
+      "steam"
+      "steam-original"
+      "steam-unwrapped"
+      "steam-run"
+    ];
 
   home.packages = with pkgs; [
     tmux
@@ -31,6 +54,7 @@
     ))
     firefox-devedition
     # minecraft
+    # prismlauncher
     # modrinth-app
     # fabric-installer
     figma-linux

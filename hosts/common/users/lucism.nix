@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   inputs,
   ...
@@ -16,4 +15,6 @@
     packages = [inputs.home-manager.packages.${pkgs.system}.default];
   };
 
+  home-manager.users.lucism =
+    import ../../../home/lucism/lucism.nix;
 }

@@ -1,4 +1,0 @@
-{
-    spicetify = import ./spicetify.nix;
-
-}

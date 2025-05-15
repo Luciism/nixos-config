@@ -1,4 +1,5 @@
-{pkgs ...}: {
+{ pkgs, ... }:
+{
   # Bootloader.
   # boot.loader.grub.enable = true;
   # boot.loader.grub.device = "nodev";
@@ -53,6 +54,7 @@
 
   # Enable NVIDIA
   services.xserver.videoDrivers = [ "nvidia" ];
+  # hardware.nvidia.open = true;
 
   # hardware.bluetooth.enable = true; # enables support for Bluetooth
   # hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
@@ -121,31 +123,31 @@
   # Setup cloudflare tunnels
   services.cloudflared = {
     enable = true;
-    tunnels = {
-      options = {
-        originRequest = {
-          noTLSVerify = true;
-        };
-        # credentialsFile = "${config.sops.secrets.cloudflared-creds.path}";
-        credentialsFile = "/home/lucism/.cloudflared/cert.pem";
-        default = "http_status:404";
-      };
-      "a3aa0f68-4b36-4864-9d04-88d0f171b561" = {
-        credentialsFile = "/home/lucism/.cloudflared/cert.pem";
-        ingress = {
-          "local.lucism.dev" = {
-            service = "http://127.0.0.1:8000";
-          };
-          "localsecure.lucism.dev" = {
-            service = "https://127.0.0.1:8000";
-          };
-          "local3000.lucism.dev" = {
-            service = "http://127.0.0.1:3000";
-          };
-        };
-        default = "http_status:404";
-      };
-    };
+    # tunnels = {
+    #   options = {
+    #     originRequest = {
+    #       noTLSVerify = true;
+    #     };
+    #     # credentialsFile = "${config.sops.secrets.cloudflared-creds.path}";
+    #     credentialsFile = "/home/lucism/.cloudflared/cert.pem";
+    #     default = "http_status:404";
+    #   };
+    #   "a3aa0f68-4b36-4864-9d04-88d0f171b561" = {
+    #     credentialsFile = "/home/lucism/.cloudflared/cert.pem";
+    #     ingress = {
+    #       "local.lucism.dev" = {
+    #         service = "http://127.0.0.1:8000";
+    #       };
+    #       "localsecure.lucism.dev" = {
+    #         service = "https://127.0.0.1:8000";
+    #       };
+    #       "local3000.lucism.dev" = {
+    #         service = "http://127.0.0.1:3000";
+    #       };
+    #     };
+    #     default = "http_status:404";
+    #   };
+    # };
   };
 
   # services.onedrive.enable = true;
@@ -155,14 +157,15 @@
   # programs.firefox.enable = true;
 
   # Allow unfree packages
-  # nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
   programs.partition-manager.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # jetbrains.idea-community
-    partition-manager
+    # partition-manager
+    kdePackages.partitionmanager
     docker_26
     nodejs_22
     python313Full
@@ -178,9 +181,11 @@
     # basedpyright
     sqlite
     rustup
+    rust-analyzer
     nixfmt-rfc-style
     cloudflared
     oh-my-posh
+    nil
   ];
 
   programs.nix-ld.enable = true;
@@ -199,6 +204,7 @@
   environment.sessionVariables = rec {
     SUDO_EDITOR = "nvim";
   };
+  environment.variables.XDG_STATE_HOME = "/tmp";
 
   virtualisation.docker.enable = true;
   virtualisation.docker.rootless = {

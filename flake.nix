@@ -2,6 +2,7 @@
   description = "A very basic flake";
 
   inputs = {
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix/2f0cc0c110c25804cd2f6c167ab66f567941452c";
@@ -25,7 +26,7 @@
     {
       packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
 
-      homeManagerModules = import ./modules;
+      # homeManagerModules = import ./modules;
       nixosConfigurations = {
         local = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";

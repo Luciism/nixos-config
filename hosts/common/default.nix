@@ -12,6 +12,8 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
+  environment.pathsToLink = [];
+
   home-manager = {
     useUserPackages = true;
     extraSpecialArgs = {inherit inputs outputs;};
