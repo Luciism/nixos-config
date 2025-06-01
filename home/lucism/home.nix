@@ -38,6 +38,7 @@
       "steam-original"
       "steam-unwrapped"
       "steam-run"
+      "mongodb-compass"
     ];
 
   home.packages = with pkgs; [
@@ -52,9 +53,12 @@
         ];
       }
     ))
+    mongodb-compass
+    obs-studio 
     firefox-devedition
+    cheese
     # minecraft
-    # prismlauncher
+    prismlauncher
     # modrinth-app
     # fabric-installer
     figma-linux
@@ -65,6 +69,7 @@
     uv
     vscode
     gnome-clocks
+    filezilla
     # onedrivegui
     # spotify
     # spicetify-cli

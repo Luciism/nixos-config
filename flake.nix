@@ -2,10 +2,10 @@
   description = "A very basic flake";
 
   inputs = {
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    # nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix/2f0cc0c110c25804cd2f6c167ab66f567941452c";
+      url = "github:Gerg-L/spicetify-nix/8c1be0e5e9a7f35ccd6f7b10bcfa08f2734dad91";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {

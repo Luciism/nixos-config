@@ -54,7 +54,8 @@
 
   # Enable NVIDIA
   services.xserver.videoDrivers = [ "nvidia" ];
-  # hardware.nvidia.open = true;
+  hardware.nvidia.open = false;
+  hardware.graphics.enable = true;
 
   # hardware.bluetooth.enable = true; # enables support for Bluetooth
   # hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
@@ -68,7 +69,7 @@
   };
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -186,6 +187,8 @@
     cloudflared
     oh-my-posh
     nil
+    ntfs3g
+    tmux
   ];
 
   programs.nix-ld.enable = true;
@@ -203,6 +206,11 @@
 
   environment.sessionVariables = rec {
     SUDO_EDITOR = "nvim";
+    NVIM_LOG_FILE = "/dev/null"; # Fix annoying .nvimlog files
+  };
+  environment.shellAliases = {
+    py = "python3";
+    cls = "clear";
   };
   environment.variables.XDG_STATE_HOME = "/tmp";
 

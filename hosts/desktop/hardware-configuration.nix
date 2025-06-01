@@ -29,6 +29,12 @@
       fsType = "ext4";
     };
 
+  fileSystems."/mnt/ssd" = {
+    device = "/dev/disk/by-uuid/00E2C1B0E2C1AA6C";
+    fsType = "ntfs-3g";  # Use ntfs-3g for proper NTFS support
+    options = [ "uid=1000" "gid=1000" "rw" ]; # Set appropriate options
+  };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
