@@ -6,15 +6,6 @@
   ...
 }:
 {
-  # home.features = {
-  #   spicetify.enable = true;
-  # };
-  # config.features = {
-  #   spicetify.enable = true;
-  # };
-  # spicetify.enable = true;
-  # environment = {};
-
   home.username = "lucism";
   home.homeDirectory = "/home/${config.home.username}";
 
@@ -42,7 +33,6 @@
     ];
 
   home.packages = with pkgs; [
-    tmux
     # gimp
     libreoffice
     discord
@@ -54,30 +44,38 @@
       }
     ))
     mongodb-compass
-    obs-studio 
+    obs-studio
     firefox-devedition
     cheese
-    # minecraft
     prismlauncher
-    # modrinth-app
-    # fabric-installer
     figma-linux
-    # kdePackages.partitionmanager
-    # openvpn
-    # openvpn3
     docker-client
     uv
     vscode
     gnome-clocks
     filezilla
-    # onedrivegui
-    # spotify
-    # spicetify-cli
-    # thunderbird
-    # discord
+    easyeffects
+    pavucontrol
+    wezterm
   ];
-  # Secrets
-  # sops.secrets."cloudflared/cert".path = "${config.home.homeDirectory}/.cloudflared/cert.pem";
+
+  programs.starship = {
+    enable = true;
+    enableBashIntegration = true; # or enableZshIntegration, etc.
+    settings = {
+      # Optional: customize configuration
+      format = "$all$character";
+      character = {
+        success_symbol = "[❯](bold green)";
+        error_symbol = "[❯](bold red)";
+      };
+    };
+  };
+
+  programs.tmux = {
+    enable = true;
+    shell = "${pkgs.bash}/bin/bash";
+  };
 
   # For nixd LSP to recognize what nixpkgs version I use
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
@@ -97,20 +95,6 @@
     # '';
   };
 
-  # xdg.desktopEntries = {
-  #   vesktop = {
-  #     name = "Discord";
-  #     genericName = "Discord";
-  #     exec = "vesktop";
-  #     terminal = false;
-  #     categories = [
-  #       "Application"
-  #       "Messaging"
-  #       "Social"
-  #     ];
-  #   };
-  # };
-  #
   home.sessionPath = [
     "$HOME/.local/bin"
   ];
