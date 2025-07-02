@@ -56,7 +56,12 @@
     filezilla
     easyeffects
     pavucontrol
+    insomnia
+    pgadmin4-desktopmode
     wezterm
+    tmux
+    # libsForQt5.qtstyleplugin-kvantum
+    kdePackages.qtstyleplugin-kvantum
   ];
 
   programs.starship = {
@@ -70,11 +75,6 @@
         error_symbol = "[❯](bold red)";
       };
     };
-  };
-
-  programs.tmux = {
-    enable = true;
-    shell = "${pkgs.bash}/bin/bash";
   };
 
   # For nixd LSP to recognize what nixpkgs version I use

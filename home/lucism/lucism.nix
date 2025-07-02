@@ -9,9 +9,8 @@
     inputs.spicetify-nix.homeManagerModules.default
   ];
 
-  config = {
-    features = {
-      spicetify.enable = true;
-    };
+  features = {
+    spicetify.enable = true;
+    wine.enable = false;
   };
 }
