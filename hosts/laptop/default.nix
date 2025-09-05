@@ -3,10 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 {
-  config,
-  lib,
-  pkgs,
-  inputs,
   ...
 }:
 {
@@ -17,5 +13,5 @@
     # inputs.home-manager.nixosModules.default
   ];
 
-  config.users.lucism.enable = true;
+  config.users.lucism-minimal.enable = true;
 }

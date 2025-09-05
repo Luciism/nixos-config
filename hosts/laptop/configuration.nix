@@ -5,7 +5,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "local"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -49,8 +49,7 @@
   services.printing.enable = true;
 
   # Enable NVIDIA
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.open = false;
+  services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.graphics.enable = true; # Replaces hardware.opengl
 
   # hardware.bluetooth.enable = true; # enables support for Bluetooth
@@ -86,7 +85,7 @@
 
   # Setup cloudflare tunnels
   services.cloudflared = {
-    enable = true;
+    enable = false;
   };
 
   # services.onedrive.enable = true;
@@ -98,33 +97,21 @@
   # Allow unfree packages
   # nixpkgs.config.allowUnfree = true;
 
-  programs.partition-manager.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    kdePackages.partitionmanager
-    docker_26
-    nodejs_22
     python313Full
-    poetry
-    poetryPlugins.poetry-plugin-shell
     zig
     gcc
     neovim
     git
     ripgrep
-    sqlite
     rustup
     rust-analyzer
     nixfmt-rfc-style
-    cloudflared
-    oh-my-posh
     nil
-    ntfs3g
     unzip # For stylua (nvim)
     tmux
-    openssl
-    pkg-config
   ];
 
   programs.nix-ld.enable = true;
@@ -136,7 +123,7 @@
     pkgs.nerd-fonts.jetbrains-mono
   ];
 
-  environment.sessionVariables = rec {
+  environment.sessionVariables = {
     SUDO_EDITOR = "nvim";
     NVIM_LOG_FILE = "/dev/null"; # Fix annoying .nvimlog files
   };
@@ -148,11 +135,7 @@
   environment.variables.XDG_STATE_HOME = "/tmp";
   environment.etc."bin/sh".source = "${pkgs.bash}/bin/bash";
 
-  virtualisation.docker.enable = true;
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
+  virtualisation.docker.enable = false;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
