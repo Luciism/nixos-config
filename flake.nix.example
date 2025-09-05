@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "NixOS System Configuration Flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
@@ -12,7 +12,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs =
@@ -21,20 +20,16 @@
       nixpkgs,
       spicetify-nix,
       home-manager,
-      # sops-nix,
     }@inputs:
     {
       packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
 
-      # homeManagerModules = import ./modules;
       nixosConfigurations = {
         local = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            ./hosts/desktop
-            # ./hosts/desktop/spicetify.nix
-            # sops-nix.nixosModules.sops
+            ./hosts/HOSTNAME_HERE
           ];
         };
       };
