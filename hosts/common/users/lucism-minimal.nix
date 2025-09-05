@@ -10,7 +10,7 @@ let
   cfg = config.users.lucism;
 in
 {
-  options.users.lucism.enable = mkEnableOption "Enable lucism user with full features";
+  options.users.lucism-minimal.enable = mkEnableOption "Enable lucism user with minimal features";
 
   config = mkIf cfg.enable {
     users.users.lucism = {
@@ -24,6 +24,6 @@ in
       packages = [ inputs.home-manager.packages.${pkgs.system}.default ];
     };
 
-    home-manager.users.lucism = import ../../../home/lucism/lucism.nix;
+    home-manager.users.lucism = import ../../../home/lucism-minimal/lucism.nix;
   };
 }
