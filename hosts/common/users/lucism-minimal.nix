@@ -7,7 +7,7 @@
 }:
 with lib;
 let
-  cfg = config.users.lucism;
+  cfg = config.users.lucism-minimal;
 in
 {
   options.users.lucism-minimal.enable = mkEnableOption "Enable lucism user with minimal features";
