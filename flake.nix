@@ -25,11 +25,18 @@
       packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
 
       nixosConfigurations = {
-        local = nixpkgs.lib.nixosSystem {
+        desktop = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            ./hosts/HOSTNAME_HERE
+            ./hosts/desktop
+          ];
+        };
+        laptop = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/laptop
           ];
         };
       };
