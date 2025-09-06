@@ -24,18 +24,9 @@
       "discord"
       "spotify"
       "vscode"
-      "minecraft-launcher"
-      "steam"
-      "steam-original"
-      "steam-unwrapped"
-      "steam-run"
-      "mongodb-compass"
-      "redisinsight"
     ];
 
   home.packages = with pkgs; [
-    # gimp
-    libreoffice
     discord
     (vesktop.overrideAttrs (
       finalAttrs: previousAttrs: {
@@ -44,43 +35,17 @@
         ];
       }
     ))
-    mongodb-compass
-    obs-studio
     firefox-devedition
     cheese
     prismlauncher
-    figma-linux
-    docker-client
     uv
     vscode
     gnome-clocks
-    filezilla
     easyeffects
     pavucontrol
-    insomnia
-    pgadmin4-desktopmode
     wezterm
-    # tmux
     tmuxifier
-    kdePackages.qtstyleplugin-kvantum
-    lazygit
-    # librewolf
-    bitwarden-desktop
-    redisinsight
   ];
-
-  programs.starship = {
-    enable = true;
-    enableBashIntegration = true; # or enableZshIntegration, etc.
-    settings = {
-      # Optional: customize configuration
-      format = "$all$character";
-      character = {
-        success_symbol = "[❯](bold green)";
-        error_symbol = "[❯](bold red)";
-      };
-    };
-  };
 
   # For nixd LSP to recognize what nixpkgs version I use
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
