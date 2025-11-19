@@ -64,9 +64,10 @@
     tmuxifier
     kdePackages.qtstyleplugin-kvantum
     lazygit
-    # librewolf
+    librewolf
     bitwarden-desktop
     redisinsight
+    brave
   ];
 
   programs.starship = {
