@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
@@ -7,13 +6,10 @@
 
   # boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [
-	"mitigations=off"
-	"elevator=mq-deadline"
-  ];
+  boot.kernelParams = [ "mitigations=off" "elevator=mq-deadline" ];
   boot.kernel.sysctl = {
-  	"vm.swappiness" = 10;
-	"vm.vfs_cache_pressure" = 50;
+    "vm.swappiness" = 10;
+    "vm.vfs_cache_pressure" = 50;
   };
 
   networking.hostName = "compaq"; # Define your hostname.
@@ -45,25 +41,26 @@
 
   # Enable the X11 windowing system.
   services.xserver = {
-	enable = true;
-	# Configure keymap in X11
-	xkb = {
-		layout = "us";
-		variant = "";
-	};
+    enable = true;
+    # Configure keymap in X11
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
 
-  # Enable the Desktop Environment.
-  services.xserver.displayManager = {
-  	lightdm = {
-		enable = true;
-		greeters.gtk.theme.name = "Adwaita-dark";
-	};
-	defaultSession = "xfce";
+    # Enable the Desktop Environment.
+    displayManager = {
+      lightdm = {
+        enable = true;
+        greeters.gtk.theme.name = "Adwaita-dark";
+      };
+      defaultSession = "xfce";
+    };
   };
 
   services.xserver.desktopManager.xfce = {
-	enable = true;
-	# enable_Xfwm = true;
+    enable = true;
+    # enable_Xfwm = true;
   };
   # services.displayManager.sddm.wayland.enable = true;
 
@@ -139,15 +136,14 @@
     cargo
   ];
 
-  fonts.packages = [
-    pkgs.nerd-fonts.jetbrains-mono
-  ];
+  fonts.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
 
-  environment.sessionVariables = rec {
+  environment.sessionVariables = {
     SUDO_EDITOR = "nvim";
     NVIM_LOG_FILE = "/dev/null"; # Fix annoying .nvimlog files
     # LD_LIBRARY_PATH = "/run/opengl-driver/lib";
-    LD_LIBRARY_PATH = "/run/opengl-driver/lib:${pkgs.libglvnd}/lib:${pkgs.xorg.libX11}/lib:${pkgs.xorg.libXrandr}/lib:${pkgs.xorg.libXxf86vm}/lib";
+    LD_LIBRARY_PATH =
+      "/run/opengl-driver/lib:${pkgs.libglvnd}/lib:${pkgs.xorg.libX11}/lib:${pkgs.xorg.libXrandr}/lib:${pkgs.xorg.libXxf86vm}/lib";
   };
   environment.shellAliases = {
     py = "python3";
