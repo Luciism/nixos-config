@@ -1,10 +1,19 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = false;
 
-  networking.hostName = "local"; # Define your hostname.
+    grub = {
+      enable = true;
+      efiSupport = true;
+      useOSProber = true;
+      devices = [ "/dev/sda" ];
+    };
+
+    efi.efiSysMountPoint = "/boot";
+  };
+
+  networking.hostName = "desktop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -85,9 +94,7 @@
   # services.xserver.libinput.enable = true;
 
   # Setup cloudflare tunnels
-  services.cloudflared = {
-    enable = true;
-  };
+  services.cloudflared = { enable = true; };
 
   # services.onedrive.enable = true;
   # services.onedrive.package.args = [ "--disable-notifications" ];
@@ -96,7 +103,7 @@
   # programs.firefox.enable = true;
 
   # Allow unfree packages
-  # nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
   programs.partition-manager.enable = true;
   # List packages installed in system profile. To search, run:
@@ -112,6 +119,7 @@
     gcc
     neovim
     git
+    go
     ripgrep
     sqlite
     rustup
@@ -125,18 +133,15 @@
     tmux
     openssl
     pkg-config
+    nginx
   ];
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    basedpyright
-  ];
+  programs.nix-ld.libraries = with pkgs; [ basedpyright ];
 
-  fonts.packages = [
-    pkgs.nerd-fonts.jetbrains-mono
-  ];
+  fonts.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
 
-  environment.sessionVariables = rec {
+  environment.sessionVariables = {
     SUDO_EDITOR = "nvim";
     NVIM_LOG_FILE = "/dev/null"; # Fix annoying .nvimlog files
   };
