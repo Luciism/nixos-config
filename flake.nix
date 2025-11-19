@@ -5,7 +5,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     # nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix/8c1be0e5e9a7f35ccd6f7b10bcfa08f2734dad91";
+      url =
+        "github:Gerg-L/spicetify-nix/8c1be0e5e9a7f35ccd6f7b10bcfa08f2734dad91";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
@@ -14,31 +15,25 @@
     };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      spicetify-nix,
-      home-manager,
-    }@inputs:
-    {
-      packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+  outputs = { self, nixpkgs, spicetify-nix, home-manager, }@inputs: {
+    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
 
-      nixosConfigurations = {
-        desktop = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/desktop
-          ];
-        };
-        laptop = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/laptop
-          ];
-        };
+    nixosConfigurations = {
+      desktop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [ ./hosts/desktop ];
+      };
+      laptop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [ ./hosts/laptop ];
+      };
+      compaq = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [ ./hosts/compaq ];
       };
     };
+  };
 }

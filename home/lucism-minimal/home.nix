@@ -27,7 +27,7 @@
     ];
 
   home.packages = with pkgs; [
-    discord
+    # discord
     (vesktop.overrideAttrs (
       finalAttrs: previousAttrs: {
         desktopItems = [
@@ -35,11 +35,11 @@
         ];
       }
     ))
-    firefox-devedition
+    # firefox-devedition
     cheese
     prismlauncher
     uv
-    vscode
+    # vscode
     gnome-clocks
     easyeffects
     pavucontrol
