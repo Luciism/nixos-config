@@ -28,7 +28,7 @@ in
         rotatingCoverart
         pointer
       ];
-      theme = spicePkgs.themes.text;
+      theme = spicePkgs.themes.catppuccin;
     };
   };
 }
