@@ -9,13 +9,14 @@
         "github:Gerg-L/spicetify-nix/8c1be0e5e9a7f35ccd6f7b10bcfa08f2734dad91";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-grub-themes.url = "github:jeslie0/nixos-grub-themes";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, spicetify-nix, home-manager, }@inputs: {
+  outputs = { self, nixpkgs, spicetify-nix, home-manager, nixos-grub-themes }@inputs: {
     packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
 
     nixosConfigurations = {

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = false;
@@ -7,13 +7,24 @@
       enable = true;
       efiSupport = true;
       useOSProber = true;
-      devices = [ "/dev/sda" ];
+      device = "nodev";
+      theme = inputs.nixos-grub-themes.packages.${pkgs.system}.big-sur;
     };
+  };
 
-    efi.efiSysMountPoint = "/boot";
+  boot.plymouth = {
+    enable = true;
+    theme = "polaroid";
+    themePackages = with pkgs;
+      [
+        # By default we would install all themes
+        (adi1090x-plymouth-themes.override { selected_themes = [ "polaroid" ]; })
+      ];
+
   };
 
   networking.hostName = "desktop"; # Define your hostname.
+  # networking.enableIPv6 = false;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -70,6 +81,17 @@
     powerOnBoot = true;
     settings = {
       # Policy.AutoEnable = true;
+    };
+  };
+
+  systemd.services.bluetooth-restart = {
+    description = "Restart Bluetooth on boot";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "bluetooth.service" ];
+    
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.systemd}/bin/systemctl restart bluetooth.service";
     };
   };
 
@@ -134,6 +156,8 @@
     openssl
     pkg-config
     nginx
+    davinci-resolve
+    ffmpeg-full
   ];
 
   programs.nix-ld.enable = true;
@@ -142,6 +166,7 @@
   fonts.packages = [ pkgs.nerd-fonts.jetbrains-mono ];
 
   environment.sessionVariables = {
+    EDITOR = "nvim";
     SUDO_EDITOR = "nvim";
     NVIM_LOG_FILE = "/dev/null"; # Fix annoying .nvimlog files
   };

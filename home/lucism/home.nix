@@ -64,10 +64,13 @@
     tmuxifier
     kdePackages.qtstyleplugin-kvantum
     lazygit
+    yazi
     librewolf
     bitwarden-desktop
     redisinsight
     brave
+    spacedrive
+    pinta
   ];
 
   programs.starship = {
