@@ -2,16 +2,16 @@
   description = "NixOS System Configuration Flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     # nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     spicetify-nix = {
       url =
-        "github:Gerg-L/spicetify-nix/8c1be0e5e9a7f35ccd6f7b10bcfa08f2734dad91";
+        "github:Gerg-L/spicetify-nix/806c1fdeb7af3e013215d14f5d9f06685fa6650f";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-grub-themes.url = "github:jeslie0/nixos-grub-themes";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

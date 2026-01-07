@@ -132,9 +132,9 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     kdePackages.partitionmanager
-    docker_26
+    docker_28
     nodejs_22
-    python313Full
+    python314
     poetry
     poetryPlugins.poetry-plugin-shell
     zig
