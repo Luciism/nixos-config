@@ -14,6 +14,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  systemd.services.systemd-rfkill.enable = false;
+  systemd.sockets.systemd-rfkill.enable = false;
+
   # Set your time zone.
   time.timeZone = "Pacific/Auckland";
 
@@ -48,8 +51,8 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable NVIDIA
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  # Enable graphics drivers
+  # services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.graphics.enable = true; # Replaces hardware.opengl
 
   # hardware.bluetooth.enable = true; # enables support for Bluetooth
@@ -85,7 +88,7 @@
 
   # Setup cloudflare tunnels
   services.cloudflared = {
-    enable = false;
+    enable = true;
   };
 
   # services.onedrive.enable = true;
@@ -101,6 +104,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     python314
+    cloudflared
     zig
     gcc
     neovim
@@ -112,6 +116,7 @@
     nil
     unzip # For stylua (nvim)
     tmux
+    nodejs_22
   ];
 
   programs.nix-ld.enable = true;
