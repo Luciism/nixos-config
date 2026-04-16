@@ -71,6 +71,7 @@
     brave
     spacedrive
     pinta
+    xclicker
   ];
 
   programs.starship = {

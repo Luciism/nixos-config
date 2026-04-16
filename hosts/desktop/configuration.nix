@@ -24,7 +24,7 @@
   };
 
   networking.hostName = "desktop"; # Define your hostname.
-  # networking.enableIPv6 = false;
+  networking.enableIPv6 = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -33,6 +33,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
 
   # Set your time zone.
   time.timeZone = "Pacific/Auckland";
@@ -179,6 +180,9 @@
   environment.etc."bin/sh".source = "${pkgs.bash}/bin/bash";
 
   virtualisation.docker.enable = true;
+  virtualisation.waydroid = {
+    enable = false;
+  };
   virtualisation.docker.rootless = {
     enable = true;
     setSocketVariable = true;
