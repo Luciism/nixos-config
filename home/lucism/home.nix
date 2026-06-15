@@ -66,12 +66,13 @@
     lazygit
     yazi
     librewolf
-    bitwarden-desktop
-    redisinsight
+    # bitwarden-desktop
+    # redisinsight
     brave
     spacedrive
     pinta
     xclicker
+    rpi-imager
   ];
 
   programs.starship = {

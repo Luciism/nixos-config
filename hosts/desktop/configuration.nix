@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, config, ... }: {
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = false;
@@ -72,6 +72,7 @@
   # Enable NVIDIA
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = false;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   hardware.graphics.enable = true; # Replaces hardware.opengl
 
   # hardware.bluetooth.enable = true; # enables support for Bluetooth
@@ -133,7 +134,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     kdePackages.partitionmanager
-    docker_28
+    docker_29
     nodejs_22
     python314
     poetry
@@ -202,8 +203,8 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 59100 ];  # Audio relay
+  networking.firewall.allowedUDPPorts = [ 59100 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
