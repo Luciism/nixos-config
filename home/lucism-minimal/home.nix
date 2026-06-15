@@ -9,7 +9,7 @@
   home.username = "lucism";
   home.homeDirectory = "/home/${config.home.username}";
 
-  # wayland.windowManager.hyprland.systemd.enable = false;
+  wayland.windowManager.hyprland.systemd.enable = false;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
