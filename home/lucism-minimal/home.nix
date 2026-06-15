@@ -9,6 +9,8 @@
   home.username = "lucism";
   home.homeDirectory = "/home/${config.home.username}";
 
+  # wayland.windowManager.hyprland.systemd.enable = false;
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -27,7 +29,6 @@
     ];
 
   home.packages = with pkgs; [
-    # discord
     (vesktop.overrideAttrs (
       finalAttrs: previousAttrs: {
         desktopItems = [
@@ -35,16 +36,13 @@
         ];
       }
     ))
-    # firefox-devedition
-    cheese
-    prismlauncher
     uv
-    # vscode
-    gnome-clocks
     easyeffects
     pavucontrol
     wezterm
     tmuxifier
+    firefox-devedition
+    brave
   ];
 
   # For nixd LSP to recognize what nixpkgs version I use

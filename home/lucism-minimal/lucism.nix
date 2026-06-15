@@ -10,7 +10,7 @@
   ];
 
   features = {
-    spicetify.enable = true;
+    spicetify.enable = false;
     wine.enable = false;
   };
 }

@@ -13,6 +13,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
 
   systemd.services.systemd-rfkill.enable = false;
   systemd.sockets.systemd-rfkill.enable = false;
@@ -42,6 +43,13 @@
   services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm.wayland.enable = true;
 
+  # programs.hyprland = {
+  #   enable = true;
+  #   withUWSM = true;
+  #   xwayland.enable = true;
+  # };
+
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -49,7 +57,7 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing.enable = false;
 
   # Enable graphics drivers
   # services.xserver.videoDrivers = [ "amdgpu" ];
@@ -57,9 +65,9 @@
 
   # hardware.bluetooth.enable = true; # enables support for Bluetooth
   # hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-  services.blueman.enable = true;
+  services.blueman.enable = false;
   hardware.bluetooth = {
-    enable = true;
+    enable = false;
     powerOnBoot = true;
     settings = {
       # Policy.AutoEnable = true;
@@ -103,6 +111,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    kdePackages.partitionmanager
     python314
     cloudflared
     zig
