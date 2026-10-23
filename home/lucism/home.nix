@@ -44,7 +44,8 @@
         ];
       }
     ))
-    mongodb-compass
+    notesnook
+    # mongodb-compass
     obs-studio
     firefox-devedition
     cheese
@@ -73,6 +74,7 @@
     pinta
     xclicker
     rpi-imager
+    sshs
   ];
 
   programs.starship = {

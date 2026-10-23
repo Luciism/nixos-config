@@ -24,7 +24,7 @@
   };
 
   networking.hostName = "desktop"; # Define your hostname.
-  networking.enableIPv6 = true;
+  networking.enableIPv6 = false;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -118,7 +118,22 @@
   # services.xserver.libinput.enable = true;
 
   # Setup cloudflare tunnels
-  services.cloudflared = { enable = true; };
+  services.cloudflared = {
+    enable = true;
+    tunnels = {
+      "1f1d7984-86c4-4ac3-8894-39084610889c" = {
+        credentialsFile = "/home/lucism/.cloudflared/1f1d7984-86c4-4ac3-8894-39084610889c.json";
+        ingress = {
+          "ssh.lucism.dev" = "ssh://127.0.0.1:22";
+        };
+        originRequest = {
+          noHappyEyeballs = true;
+        };
+
+        default = "http_status:404";
+      };
+    };
+  };
 
   # services.onedrive.enable = true;
   # services.onedrive.package.args = [ "--disable-notifications" ];
@@ -160,6 +175,7 @@
     nginx
     davinci-resolve
     ffmpeg-full
+    signal-desktop
   ];
 
   programs.nix-ld.enable = true;
@@ -200,11 +216,20 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+    };
+  };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 59100 ];  # Audio relay
-  networking.firewall.allowedUDPPorts = [ 59100 ];
+  networking.hosts = {
+    "192.168.1.55" = ["registry.home.arpa"];
+  };
+
+  networking.firewall.allowedTCPPorts = [ 59100 25565 ];  # Audio relay + minecraft
+  networking.firewall.allowedUDPPorts = [ 59100 25565 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
