@@ -177,6 +177,8 @@
     davinci-resolve
     ffmpeg-full
     signal-desktop
+    sops
+    compose2nix
   ];
 
   programs.nix-ld.enable = true;
