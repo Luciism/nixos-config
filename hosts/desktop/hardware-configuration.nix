@@ -29,9 +29,15 @@
       fsType = "ext4";
     };
 
+  fileSystems."/mnt/hdd1-cold-storage" = {
+    device = "/dev/disk/by-uuid/a7fe3442-c814-4afb-befb-ac360d67eb0e";
+    fsType = "ext4";
+    options = [ "rw" "nofail" ];
+  };
+
   fileSystems."/mnt/ssd" = {
     device = "/dev/disk/by-uuid/00E2C1B0E2C1AA6C";
-    fsType = "ntfs-3g";  # Use ntfs-3g for proper NTFS support
+    fsType = "ntfs3";
     options = [ "uid=1000" "gid=1000" "rw" ]; # Set appropriate options
   };
 
