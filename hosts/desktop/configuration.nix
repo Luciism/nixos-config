@@ -68,6 +68,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.ipp-usb.enable = true;
 
   # Enable NVIDIA
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -228,8 +229,8 @@
     "192.168.1.55" = ["registry.home.arpa"];
   };
 
-  networking.firewall.allowedTCPPorts = [ 59100 25565 ];  # Audio relay + minecraft
-  networking.firewall.allowedUDPPorts = [ 59100 25565 ];
+  networking.firewall.allowedTCPPorts = [ 25565 ];  # Audio relay + minecraft
+  networking.firewall.allowedUDPPorts = [ 25565 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
